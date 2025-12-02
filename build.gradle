@@ -6,7 +6,12 @@ plugins {
 
 group = 'com.platzi'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
+// 🔹 Java 17, claro y sin duplicar
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
 
 configurations {
 	compileOnly {
@@ -14,20 +19,19 @@ configurations {
 	}
 }
 
-
 repositories {
 	mavenCentral()
 }
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
+
+	// 🔹 Lombok con versión (buena práctica, y sirve para futuro)
+	compileOnly 'org.projectlombok:lombok:1.18.34'
+	annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
 	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
